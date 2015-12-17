@@ -162,6 +162,12 @@ $(document).ready(function() {
         sourceLangSelect = 'Choose Language';
     });
 
+    $('#challengeButton').click(function() {
+      requestDescription();
+      $('#home textarea').val('This is a test!');
+      doneTyping();
+    });
+
     // Translation form is submitted
     $("#demoSubmit").button().click(function() {
         //var modelId = '';
@@ -248,6 +254,10 @@ $(document).ready(function() {
     // Translation submit till here
 
     /* -------------------------------- Functions start from here ---------------------------------------- */
+
+    function requestDescription() {
+      console.log("...");
+    }
 
     // user is "finished typing," send for service request
     function doneTyping() {
