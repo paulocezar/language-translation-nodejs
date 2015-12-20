@@ -164,8 +164,6 @@ $(document).ready(function() {
 
     $('#challengeButton').click(function() {
       requestDescription();
-      $('#home textarea').val('This is a test!');
-      doneTyping();
     });
 
     // Translation form is submitted
@@ -256,7 +254,21 @@ $(document).ready(function() {
     /* -------------------------------- Functions start from here ---------------------------------------- */
 
     function requestDescription() {
-      console.log("...");
+        var topcoderAPICall = {
+            type: 'GET',
+            dataType: "json",
+            url: "http://api.topcoder.com/v2/challenges/30052191",
+            async: true
+        };
+        $.ajax(topcoderAPICall)
+            .done(function(data) {
+                var desc = data['detailedRequirements'];
+                $('#home textarea').val($(desc).text());
+                doneTyping();
+            })
+            .fail(function(jqXHR, statustext, errorthrown) {
+                console.log(statustext + errorthrown);
+            });
     }
 
     // user is "finished typing," send for service request
